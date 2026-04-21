@@ -31,4 +31,7 @@ resource "azurerm_traffic_manager_azure_endpoint" "name" {
   profile_id         = azurerm_traffic_manager_profile.this.id
 
 
+
+
+
 }

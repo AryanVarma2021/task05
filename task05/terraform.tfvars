@@ -76,7 +76,7 @@ app_service_plan_site_config = [
     service_tag = "AzureTrafficManager"
   },
   {
-    name       = "deny-all"
+    name       = "deny all"
     priority   = 2147483647
     action     = "Deny"
     ip_address = "0.0.0.0/0"

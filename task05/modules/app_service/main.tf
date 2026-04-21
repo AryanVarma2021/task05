@@ -22,6 +22,8 @@ resource "azurerm_windows_web_app" "win_app_service" {
 
     }
 
+    ip_restriction_default_action = "Deny"
+
 
   }
 
