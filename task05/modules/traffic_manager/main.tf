@@ -1,0 +1,34 @@
+resource "azurerm_traffic_manager_profile" "this" {
+
+  name                   = var.name
+  resource_group_name    = var.resource_group
+  traffic_routing_method = var.traffic_routing_method
+  dns_config {
+    relative_name = var.name
+    ttl           = 100
+  }
+  monitor_config {
+    protocol                     = "HTTP"
+    port                         = 80
+    path                         = "/"
+    interval_in_seconds          = 30
+    timeout_in_seconds           = 10
+    tolerated_number_of_failures = 3
+  }
+
+  tags = var.tags
+
+}
+
+
+resource "azurerm_traffic_manager_azure_endpoint" "name" {
+
+  for_each = var.traffic_manager_endpoints
+
+
+  name               = each.value.name
+  target_resource_id = each.value.target_resource_id
+  profile_id         = azurerm_traffic_manager_profile.this.id
+
+
+}
